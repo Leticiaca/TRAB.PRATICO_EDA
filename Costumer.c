@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include "Costumer.h"
 
-#define MaxName[100]
-#pragma region Costumer
 
 void listCostumer(Costumer* costumer) {  // percorre a lista de clients e imprime as informações
 	printf("*********************************\n");

@@ -1,6 +1,6 @@
 #pragma once
 
-typedef struct mobility{
+typedef struct Mobility{
 	int idMobility;
 	char tipo[20];
 	float batery_level;

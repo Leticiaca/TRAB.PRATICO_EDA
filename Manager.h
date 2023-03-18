@@ -13,4 +13,8 @@ typedef struct Manager {
 }Manager;
 
 void listManagers(Manager* manager);
+int existManager(Manager* manager, int idManager);
 Manager* insertManager(Manager* manager, int idManager, char nameManager[], char password[]);
+Manager* removeManager(Manager* manager, int idManager);
+Manager* changeManager(Manager* manager, int idManager, char nameNewManager[], char Newpassword[]);
+

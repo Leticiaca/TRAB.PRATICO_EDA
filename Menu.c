@@ -2,37 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include "Menu.h"
-
-#define MAX_NAME 50
-#define MAX_MOBILE_NUM 50
-#define MAX_MOBILE_MODEL 50
-#pragma region Menu 
-
-typedef struct Costumer {
-	int id;
-	char name[MAX_NAME];
-	char adress[MAX_NAME];
-	int nif;
-	float balance;
-	struct Costumer* next;
-}Costumer;
-
-typedef struct Manager {
-	int id;
-	char name[MAX_NAME];
-	char password[MAX_NAME];
-	struct Manager* next;
-}Manager;
-
-typedef struct Mobility {
-	int idMobility;
-	char tipo[50];
-	char batery_level[10];
-	char autonomy[10];
-	int rentMobility;
-	struct Mobility* next;
-}Mobility;
-
+#include "Costumer.h"
+#include "Manager.h"
+#include "Mobility.h"
 
 void show_menu() {
 	printf("******************************\n");
@@ -85,17 +57,16 @@ void show_mobility_menu() {
 	printf("Opcao: ");
 }
 
-#pragma region Costumer 
 Costumer* newCostumer(int id, char* name, char* adress, int nif, float balance) {
 	Costumer* costumer = (Costumer*)malloc(sizeof(Costumer));
 	if (costumer == NULL) {
 		printf("Erro ao alocar memória para o cliente\n");
 	}
 
-	costumer->id = id;
-	strcpy(costumer->name, name);
-	strcpy(costumer->adress, adress);
-	costumer->nif = nif;
+	costumer->idCostumer = id;
+	strcpy(costumer->Costumername, name);
+	strcpy(costumer->Costumeradress, adress);
+	costumer->nifCostumer = nif;
 	costumer->balance, balance;
 	costumer->next = NULL;
 	return costumer;
@@ -108,7 +79,7 @@ Costumer* removeCostumer(Costumer* listCostumers, int id) {
 	Costumer* current = listCostumers;
 	Costumer* previous = NULL;
 	while (current != NULL) {
-		if (current->id == id) {
+		if (current->idCostumer == id) {
 			if (previous == NULL) {
 				listCostumers = current->next;
 			}
@@ -133,7 +104,7 @@ void listCostumer(Costumer* listCostumers) {
 	printf("Id\tname\tdress\iNif\tbalance\n");
 	Costumer* current = listCostumers;
 	while (current != NULL) {
-		printf("%d\t%s\t%s\t%.2f\n", current->id, current->name, current->adress, current->nif, current->balance);
+		printf("%d\t%s\t%s\t%.2f\n", current->idCostumer, current->Costumername, current->Costumeradress, current->nifCostumer, current->balance);
 		current = current->next;
 	}
 }
@@ -144,8 +115,8 @@ Manager* newManager(int id, char* name, char*password){
 		printf("Erro ao alocar memória para o manager\n");
 	}
 
-	manager->id = id;
-	strcpy(manager->name, name);
+	manager->idManager = id;
+	strcpy(manager->nameManager, name);
 	strcpy(manager->password, password);
 	manager->next = NULL;
 	return manager;
@@ -158,7 +129,7 @@ Manager* removeManager(Manager* listManagers, int id) {
 	Manager* current = listManagers;
 	Manager* previous = NULL;
 	while (current != NULL) {
-		if (current->id == id) {
+		if (current->idManager == id) {
 			if (previous == NULL) {
 				listManagers = current->next;
 			}
@@ -183,7 +154,7 @@ void listManagers(Manager* listManagers) {
 	printf("Id\tname\tpassword\n");
 	Manager* current = listManagers;
 	while (current != NULL) {
-		printf("%d\t%s\t%s\n", current->id, current->name, current->password);
+		printf("%d\t%s\t%s\n", current->idManager, current->nameManager, current->password);
 		current = current->next;
 	}
 }

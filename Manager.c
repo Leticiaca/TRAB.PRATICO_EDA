@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include "Manager.h"
 
+#pragma region Manager
+
 void listManagers(Manager* manager) {  // imprime o cabeçalho para a lista de managers
 	printf("***************************************\n");
 	printf("**           Manager List            **\n");
@@ -24,4 +26,52 @@ Manager* insertManager(Manager* manager, int idManager, char nameManager[], char
 	newManager->next = manager;
 
 	return newManager;
+}
+
+int existManager(Manager* manager, int idManager){
+	for (Manager* current = manager; current != NULL; current = current->next) {
+		if (current->idManager == idManager) {
+			return 1;
+		}
+	}
+	return 0;
+}
+
+Manager* removeManager(Manager* manager, int idManager) {
+	Manager* previous = manager, * current = manager, * aux;
+	if (current == NULL) {
+		return NULL;
+	}
+	else {
+		if (current->idManager == idManager) {
+			aux = current->next;
+			free(current);
+		}
+		else {
+			while ((current != NULL) && (current->idManager != idManager)) {
+				previous = current;
+				current = current->next;
+			}
+			if (current == NULL) {
+				return(manager);
+			}
+			else {
+				previous->next = current->next;
+				free(current);
+				return(manager);
+			}
+		}
+	}
+}
+
+Manager* changeManager(Manager* manager, int idManager, char nameNewManager[], char Newpassword[]){
+	Manager* current = manager;
+	while (current != NULL && current->idManager != idManager) {
+		current = current->next;
+	}
+	if (current != NULL) {
+		strcpy(current->nameManager, nameNewManager);
+		strcpy(current->password, Newpassword);
+	}
+	return manager;
 }

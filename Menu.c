@@ -6,6 +6,7 @@
 #define MAX_NAME 50
 #define MAX_MOBILE_NUM 50
 #define MAX_MOBILE_MODEL 50
+#pragma region Menu 
 
 typedef struct Costumer {
 	int id;
@@ -29,6 +30,7 @@ typedef struct Mobility {
 	char batery_level[10];
 	char autonomy[10];
 	int rentMobility;
+	struct Mobility* next;
 }Mobility;
 
 
@@ -83,6 +85,7 @@ void show_mobility_menu() {
 	printf("Opcao: ");
 }
 
+#pragma region Costumer 
 Costumer* newCostumer(int id, char* name, char* adress, int nif, float balance) {
 	Costumer* costumer = (Costumer*)malloc(sizeof(Costumer));
 	if (costumer == NULL) {
@@ -122,7 +125,7 @@ Costumer* removeCostumer(Costumer* listCostumers, int id) {
 	return listCostumers;
 }
 
-void listCostumers(Costumer* listCostumers) {
+void listCostumer(Costumer* listCostumers) {
 	if (listCostumers == NULL) {
 		printf("None costumer found\n");
 		return;

@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include "Mobility.h"
 
+#pragma region Mobility
+struct Mobility* next;
+
 
 void listMobility(Mobility* mobility) {
 	printf("***************************************\n");
@@ -47,4 +50,51 @@ Mobility* insertMobility(Mobility* list, int id, char tipo[], float batery_level
 	current->next = new;
 
 	return list;
+}
+
+int existMobility(Mobility* mobility, int idMobility) {
+	while (mobility != NULL) {
+		if (mobility->idMobility == idMobility) return(1);
+		mobility = mobility->next;
+	}
+	return (0);
+}
+
+Mobility* removeMobility(Mobility* mobility, int idMobility) {
+	Mobility* previous = mobility, * current = mobility, * aux;
+
+	if (current == NULL) return NULL;
+	else if (current->idMobility == idMobility) {
+		aux = current->next;
+		free(current);
+	}
+	else {
+		while ((current != NULL) && (current->idMobility != idMobility)) {
+			previous = current;
+			current = current->next;
+		}
+		if (current == NULL) return (mobility);
+		else {
+			previous->next = current->next;
+			free(current);
+			return(mobility);
+		}
+	}
+}
+
+Mobility* changeMobility(Mobility* mobility, int idMobility, char tipo[], float batery_level, float autonomy) {
+	Mobility* currentnode = mobility;
+	Mobility* previousnode;
+
+	while (currentnode != NULL && currentnode->idMobility != idMobility) {
+		previousnode = currentnode;
+		currentnode = currentnode->next;
+	}
+	if (currentnode != NULL) {
+		currentnode->idMobility = idMobility;
+		strcpy(currentnode->tipo, tipo);
+		currentnode->batery_level = batery_level;
+		currentnode->autonomy = autonomy;
+	}
+	return (mobility);
 }

@@ -50,30 +50,30 @@ int main() {
 				showsubMenu("Costumer");
 				scanf("%d", &subOptionCostumer);
 				switch (subOptionCostumer) {
-					case 1;
-						listCostumers(costumers);
-						break;
+				case 1:
+					listCostumers(costumers);
+					break;
 
-						case 2;
-							insertCostumer(&costumers);
-							saveCostumers(costumers);
-							break;
+				case 2:
+					insertCostumer(&costumers);
+					saveCostumers(costumers);
+					break;
 
-							case 3;
-								removeCostumers(&costumers);
-								saveCostumers(costumers);
-								break;
+				case 3:
+					removeCostumers(&costumers);
+					saveCostumers(costumers);
+					break;
 
-								case 4;
-									changeCostumers(costumers);
-									saveCostumers(costumers);
-									break;
+				case 4:
+					changeCostumers(costumers);
+					saveCostumers(costumers);
+					break;
 
-									case 0;
-										break;
-									default:
-										showMessage("Option invalid!");
-										break;
+				case 0:
+					break;
+				default:
+					showMessage("Option invalid!");
+					break;
 				}
 			} while (subOptionCostumer != 0);
 			break;

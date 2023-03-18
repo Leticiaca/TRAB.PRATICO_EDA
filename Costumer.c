@@ -3,6 +3,7 @@
 #include "Costumer.h"
 
 #define MaxName[100]
+#pragma region Costumer
 
 void listCostumer(Costumer* costumer) {  // percorre a lista de clients e imprime as informações
 	printf("*********************************\n");
@@ -38,6 +39,43 @@ Costumer* insertCostumer(Costumer* costumer, int idCostumer, char Costumername[]
 	return newCostumer;
 }
 
+int existCostumer(Costumer* costumer, int nifCostumer) {
+	while (costumer != NULL) {
+		if (costumer->nifCostumer == nifCostumer) {
+			return (1);
+		}
+		costumer = costumer->next;
+	}
+	return (0);
+}
+
+Costumer* removeCostumer(Costumer* costumer, int nifCostumer) {
+	Costumer* previous = costumer, * current = costumer, * aux;
+
+	if (current == NULL) {
+		return NULL;
+	}
+	else {
+		if (current->nifCostumer == nifCostumer) {
+			aux = current->next;
+			free(current);
+		}
+		else {
+			while ((current != NULL) && (current->nifCostumer != nifCostumer)) {
+				previous = current;
+				current = current->next;
+			}
+			if (current == NULL) {
+				return (costumer);
+			}
+			else {
+				previous->next = current->next;
+				free(current);
+				return(costumer);
+			}
+		}
+	}
+}
 
 
 

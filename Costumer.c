@@ -23,7 +23,7 @@ void listCostumer(Costumer* costumer) {  // percorre a lista de clients e imprim
 Costumer* insertCostumer(Costumer* costumer, int idCostumer, char Costumername[], char Costumeradress[], int nifCostumer, float balance) { // adiciona um novo client à lista 
 
 	if (!existCostumer(costumer, nifCostumer)) {
-		Costumer* new = (Costumer*)malloc(sizeof(Costumer));
+		Costumer* new = (Costumer*)malloc(sizeof(costumer));
 		if (new != NULL) {
 			new->idCostumer = idCostumer;
 			strcpy(new->Costumername, Costumername);

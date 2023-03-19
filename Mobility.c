@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "Mobility.h"
+#include "Menu.h"
 
 #pragma region Mobility
-struct Mobility* next;
+//struct Mobility* next;
 
 
 void listMobility(Mobility* mobility) {
@@ -23,33 +23,25 @@ void listMobility(Mobility* mobility) {
 	}
 }
 
-Mobility* insertMobility(Mobility* list, int id, char tipo[], float batery_level, float autonomy, int rent) {
-	Mobility* new = (Mobility*)malloc(sizeof(Mobility));
+Mobility* insertMobility(Mobility* mobility,int idMobility, char tipo[], float batery_level, float autonomy){
+	if (!existMobility(mobility, idMobility)) {
+		Mobility* new = malloc(sizeof( mobility));
 
-	if (new == NULL) {
-		printf("Erro ao alocar memória\n");
-		return list;
+		if (new != NULL) {
+			new->idMobility = idMobility;
+			strcpy(new->tipo, tipo);
+			new->batery_level = batery_level;
+			new->autonomy = autonomy;
+			new->next = mobility;
+
+			if (mobility ==NULL){
+				mobility = new;
+			}
+			return new;
+		}
 	}
 
-	new->idMobility = id;
-	strcpy(new->tipo, tipo);
-	new->batery_level = batery_level;
-	new->autonomy = autonomy;
-	new->next = NULL;
-
-	if (list == NULL) {
-		return new;
-	}
-
-	Mobility* current = list;
-
-	while (current->next != NULL) {
-		current = current->next;
-	}
-
-	current->next = new;
-
-	return list;
+	return mobility;
 }
 
 int existMobility(Mobility* mobility, int idMobility) {

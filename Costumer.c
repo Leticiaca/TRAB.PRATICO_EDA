@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "Costumer.h"
+#include "Menu.h"
 
 
 void listCostumer(Costumer* costumer) {  // percorre a lista de clients e imprime as informações
@@ -21,21 +21,25 @@ void listCostumer(Costumer* costumer) {  // percorre a lista de clients e imprim
 }
 
 Costumer* insertCostumer(Costumer* costumer, int idCostumer, char Costumername[], char Costumeradress[], int nifCostumer, float balance) { // adiciona um novo client à lista 
-	Costumer* newCostumer = (Costumer*)malloc(sizeof(Costumer));
 
-	if (newCostumer == NULL) {
-		return costumer;
+	if (!existCostumer(costumer, nifCostumer)) {
+		Costumer* new = (Costumer*)malloc(sizeof(Costumer));
+		if (new != NULL) {
+			new->idCostumer = idCostumer;
+			strcpy(new->Costumername, Costumername);
+			strcpy(new->Costumeradress, Costumeradress);
+			new->nifCostumer = nifCostumer;
+			new->balance = balance;
+			new->next = costumer;
+			return(new);
+		}
+		else {
+			return(costumer);
+		}
 	}
-
-	newCostumer->idCostumer = idCostumer;
-	strcpy(newCostumer->Costumername, Costumername);
-	strcpy(newCostumer->Costumeradress, Costumeradress);
-	newCostumer->nifCostumer = nifCostumer;
-	newCostumer->balance = balance;
-	newCostumer->next = costumer;
-
-	return newCostumer;
 }
+
+	
 
 int existCostumer(Costumer* costumer, int nifCostumer) {
 	while (costumer != NULL) {
@@ -74,6 +78,37 @@ Costumer* removeCostumer(Costumer* costumer, int nifCostumer) {
 		}
 	}
 }
+
+	//Fazer esta função
+//stumer* saveCostumers(Costumer* costumer, int idCostumer, char Costumername[], char Costumeradress[], int nifCostumer, float balance) {
+
+//eturn costumer;
+//}
+	
+Costumer* changeCostumers(Costumer* costumer, int idNew, char newName[], char newAdress[], int nifCostumer, float balance){
+	Costumer* currentnode = costumer;
+	Costumer* previousnode;
+
+	while(currentnode !=NULL && currentnode->nifCostumer != nifCostumer){
+		previousnode = currentnode;
+		currentnode = currentnode->next;
+	}
+	if (currentnode != NULL) {
+		currentnode->idCostumer = idNew;
+		strcpy(currentnode->Costumername, newName);
+		strcpy(currentnode->Costumeradress, newAdress);
+		currentnode->nifCostumer = nifCostumer;
+		currentnode->balance = balance;
+
+	}
+	return (costumer);
+
+}
+
+                  
+
+
+
 
 
 

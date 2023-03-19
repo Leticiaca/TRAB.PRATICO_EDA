@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "Manager.h"
+#include "Menu.h"
 
 #pragma region Manager
 
@@ -8,6 +8,11 @@ void listManagers(Manager* manager) {  // imprime o cabeçalho para a lista de ma
 	printf("***************************************\n");
 	printf("**           Manager List            **\n");
 	printf("***************************************\n");
+
+	if (manager == NULL) {
+		printf("None manager found\n");
+		return;
+	}
 
 	for (Manager* m = manager; m != NULL; m = m->next) { // percorre a lista ligada do manager 
 		printf("Id:%d Name:%s Password:%s\n", m->idManager, m->nameManager, m->password);

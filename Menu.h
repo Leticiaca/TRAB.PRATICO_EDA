@@ -5,7 +5,6 @@
 #include"Mobility.h"
 #include"Costumer.h"
 #include"Manager.h"
-#include"Menu.h"
 
 struct Menu* next;
 void show_menu();
@@ -17,7 +16,7 @@ void show_mobility_menu();
 Costumer* newCostumer(Costumer* costumer);
 Costumer* removeCostumer(Costumer* costumer);
 //Costumer* listCostumer(Costumer* listCostumer);
-void listCostumer(Costumer* listCostumers);
+//void listCostumer(Costumer* listCostumers);
 #pragma region Manager
 #pragma region Mobility
 

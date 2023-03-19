@@ -2,42 +2,39 @@
 #include <stdlib.h>
 #include <string.h>
 #include <locale.h>
-#include "Costumer.h"
-#include "Manager.h"
-#include "Mobility.h"
-//#include "Menu.h"
+#include "Menu.h"
 
 
 int main() {
 	setlocale(LC_ALL, "");
 
-	Costumer* costumers = loadCostumers();
-	Manager* managers = loadManagers();
-	Mobility* mobilitys = loadMobility();
+	Costumer* costumers = (Costumer*)malloc(sizeof(costumers));
+	Manager* managers = (Manager*)malloc(sizeof(managers));
+	Mobility* Mobilitys = (Mobility*)malloc(sizeof(Mobilitys));
 
 	int option;
 	int subOptionCostumer;
 	int subOptionManager;
 
-	showMenu();
+	show_menu();
 	scanf("%d", &option);
 	switch (option) {
 	case 1: // Client Menu
 		do {
-			showsubMenu("Costumer");
+			show_costumer_menu();
 			scanf("%d", &subOptionCostumer);
 			switch (subOptionCostumer) {
 			case 1:
-				listCostumers(costumers);
+				listCostumer(costumers);
 				break;
 
 			case 2:
-				insertCostumer(&costumers);
+				//insertCostumer(&costumers);
 				saveCostumers(costumers);
 				break;
 
 			case 3:
-				removeCostumers(&costumers);
+				removeCostumer(costumers, costumers->nifCostumer);
 				saveCostumers(costumers);
 				break;
 
@@ -49,14 +46,15 @@ int main() {
 			case 0:
 				break;
 			default:
-				showMessage("Option invalid!");
+				system("cls");
+				printf("Option invalid!");
 				break;
 			}
 		} while (subOptionCostumer != 0);
 		break;
 
 	case 2:
-		showsubMenu("Manager");
+		show_manager_menu();
 		scanf("%d", &subOptionManager);
 		switch (subOptionManager) {
 		case 1:
@@ -64,9 +62,14 @@ int main() {
 			break;
 
 		case 2:
-			insertManagers(&managers);
+			insertManager(&managers, managers->idManager, managers->nameManager, managers->password);
 			break;
 		}
+
+	case 3:
+		show_mobility_menu();
 	}
+	
+
 
 }

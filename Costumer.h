@@ -15,27 +15,12 @@ typedef struct Costumer {
 } Costumer;
 
 
-/// <summary>
-/// Não sei o que é isto
-/// </summary>
-/// <param name="costumer"></param>
-/// 
-/// Mas tens duas funções com o mesmo nome e depois chamam outra função que faz outra merda diferente
-/// Para mim o que faz sentido é isto
-/// 
-/// 
-/// 
-//void listCostumer(Costumer* costumer) {
-//	Costumer* insertCostumer(Costumer * Costumer, int idCostumer, char Costumername[], char Costumeradress, int nifCostumer, float Costumerbalance[]);
-//}
-//
-//void listCostumer(Costumer* costumer) {
-//	Costumer* removeCostumer(Costumer * Costumer, int nifCostumer);
-//}
+//void listCostumer(Costumer* costumer);
+//Costumer* insertCostumer(Costumer* costumer, int idCostumer, char Costumername[], char Costumeradress, int nifCostumer, float balance[]);
+//Costumer* removeCostumer(Costumer* costumer, int nifCostumer);
+//Costumer* changeCostumers(Costumer* costumer);
+//int existCostumer(Costumer* costumer, int nifCostumer);
+//void saveCostumers(Costumer* costumer);
 
-void listCostumer(Costumer* costumer);
-Costumer* insertCostumer(Costumer* Costumer, int idCostumer, char Costumername[], char Costumeradress, int nifCostumer, float Costumerbalance[]);
-Costumer* removeCostumer(Costumer* Costumer, int nifCostumer);
-int existCostumer(Costumer* costumer, int nifCostumer);
 
 
